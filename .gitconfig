@@ -1,0 +1,7 @@
+[user]
+	name = Chris Zalidis\n\n
+	email = zalidis@gmail.com
+[color]
+	ui = true
+[log]
+	decorate = full
