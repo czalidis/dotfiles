@@ -43,3 +43,6 @@ execute pathogen#infect()
 
 " add custom filetypes
 au BufNewFile,BufRead *.launch set filetype=xml
+
+" show whitespace in cpph files
+"set list listchars=tab:>-,trail:·,extends:>
