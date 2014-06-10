@@ -44,5 +44,8 @@ execute pathogen#infect()
 " add custom filetypes
 au BufNewFile,BufRead *.launch set filetype=xml
 
+" toggle NERDTree with Ctrl+n
+map <C-n> :NERDTreeToggle<CR>
+
 " show whitespace in cpph files
 "set list listchars=tab:>-,trail:·,extends:>
