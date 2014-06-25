@@ -47,5 +47,8 @@ au BufNewFile,BufRead *.launch set filetype=xml
 " toggle NERDTree with Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 
+" toogle TagBar with <F8>
+nmap <F8> :TagbarToggle<CR> 
+
 " show whitespace in cpph files
 "set list listchars=tab:>-,trail:·,extends:>
