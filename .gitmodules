@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/vim-ros"]
 	path = .vim/bundle/vim-ros
 	url = https://github.com/taketwo/vim-ros.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
