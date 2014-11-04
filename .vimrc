@@ -35,7 +35,7 @@ set expandtab
 set clipboard=unnamed,unnamedplus
 
 " map control-backspace to delete the previous word
-:imap <C-BS> <C-W>
+imap <C-BS> <C-W>
 
 " set spell checking for certain filetypes
 autocmd BufRead,BufNewFile *.md setlocal spell
@@ -51,10 +51,10 @@ au BufNewFile,BufRead *.launch set filetype=xml
 map <C-n> :NERDTreeToggle<CR>
 
 " toogle TagBar with <F8>
-nmap <F8> :TagbarToggle<CR> 
+nmap <F8> :TagbarToggle<CR>
 
 " show whitespace in cpph files
-"set list listchars=tab:>-,trail:·,extends:>
+set list listchars=tab:>-,trail:·,extends:>
 
 " mini-bufexpl customization
 " set minibufexp to split vertically and to the right
@@ -78,5 +78,19 @@ let g:miniBufExplCycleArround = 1
 " toogle minibufexpl with <F9>
 map <F9> :MBEToggle<CR>
 
+" vim-airline customization
 
+" set vim to 256 colors to work with terminals
+set t_Co=256
 
+" don't show vim's mode, use airline's instead
+set noshowmode
+
+" make airline visible without split
+set laststatus=2
+
+" remove delay detween insert and normal mode
+set ttimeoutlen=50
+
+" change default colors for airline
+let g:airline_theme = 'kolor'
