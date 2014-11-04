@@ -34,6 +34,9 @@ set expandtab
 " copy to and from system clipboard
 set clipboard=unnamed,unnamedplus
 
+" map control-backspace to delete the previous word
+:imap <C-BS> <C-W>
+
 " set spell checking for certain filetypes
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
@@ -52,3 +55,28 @@ nmap <F8> :TagbarToggle<CR>
 
 " show whitespace in cpph files
 "set list listchars=tab:>-,trail:·,extends:>
+
+" mini-bufexpl customization
+" set minibufexp to split vertically and to the right
+let g:miniBufExplBRSplit = 1
+let g:miniBufExplVSplit = 1
+
+" set max column size
+let g:miniBufExplMaxSize = 30
+
+" use Ctrl+Page Up/Down to change buffers
+noremap <C-PageDown> :MBEbn<CR>
+noremap <C-PageUp> :MBEbp<CR>
+
+" same as above but in MRU fashion
+noremap <C-TAB>   :MBEbf<CR>
+noremap <C-S-TAB> :MBEbb<CR>
+
+" should buffer be cycled arround if hits the begining or the endi
+let g:miniBufExplCycleArround = 1
+
+" toogle minibufexpl with <F9>
+map <F9> :MBEToggle<CR>
+
+
+
