@@ -34,7 +34,7 @@ set expandtab
 " copy to and from system clipboard
 set clipboard=unnamed,unnamedplus
 
-" map control-backspace to delete the previous word
+" map control-backspace to delete the previous word, works only in gvim
 imap <C-BS> <C-W>
 
 " set spell checking for certain filetypes
@@ -94,3 +94,11 @@ set ttimeoutlen=50
 
 " change default colors for airline
 let g:airline_theme = 'kolor'
+
+" enable powerline symbols, needs powerline fonts installed
+let g:airline_powerline_fonts = 1
+
+" change default font for gvim to enable powerline symbols
+if has('gui_running')
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+endif
