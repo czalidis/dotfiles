@@ -69,8 +69,8 @@ noremap <C-PageDown> :MBEbn<CR>
 noremap <C-PageUp> :MBEbp<CR>
 
 " same as above but in MRU fashion
-noremap <C-TAB>   :MBEbf<CR>
-noremap <C-S-TAB> :MBEbb<CR>
+noremap <C-TAB>   :MBEbb<CR>
+noremap <C-S-TAB> :MBEbf<CR>
 
 " should buffer be cycled arround if hits the begining or the endi
 let g:miniBufExplCycleArround = 1
