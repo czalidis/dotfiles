@@ -102,3 +102,12 @@ let g:airline_powerline_fonts = 1
 if has('gui_running')
   set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 endif
+
+" change default indent character for indentLine
+let g:indentLine_char = '┊'
+
+" disable indentLine plugin on startup
+let g:indentLine_enabled = 0
+
+" toggle indentLine with <F7>
+nmap <F7> :IndentLinesToggle<CR>

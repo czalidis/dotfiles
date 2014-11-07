@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/auto-pairs"]
 	path = .vim/bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule ".vim/bundle/indent-line"]
+	path = .vim/bundle/indent-line
+	url = https://github.com/Yggdroot/indentLine.git
