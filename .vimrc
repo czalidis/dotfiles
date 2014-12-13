@@ -2,6 +2,7 @@
 syntax on
 
 " Better command-line completion
+set wildmode=longest,list
 set wildmenu
 
 " Use case insensitive search, except when using capital letters
@@ -31,8 +32,21 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-" copy to and from system clipboard
-set clipboard=unnamed,unnamedplus
+" CLIPBOARD SETTINGS
+if has('unnamedplus')
+  " By default, Vim will not use the system clipboard when yanking/pasting to
+  " the default register. This option makes Vim use the system default
+  " clipboard.
+  " Note that on X11, there are _two_ system clipboards: the "standard" one, and
+  " the selection/mouse-middle-click one. Vim sees the standard one as register
+  " '+' (and this option makes Vim use it by default) and the selection one as
+  " '*'.
+  " See :h 'clipboard' for details.
+  set clipboard=unnamedplus,unnamed
+else
+  " Vim now also uses the selection system clipboard for default yank/paste.
+  set clipboard+=unnamed
+endif
 
 " map control-backspace to delete the previous word, works only in gvim
 imap <C-BS> <C-W>
