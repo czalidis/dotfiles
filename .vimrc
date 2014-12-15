@@ -48,6 +48,11 @@ else
   set clipboard+=unnamed
 endif
 
+" <leader>v brings up .vimrc
+" <leader>V reloads it and makes all changes active (file has to be saved first)
+noremap <leader>v :e! $MYVIMRC<CR>
+noremap <silent> <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
 " map control-backspace to delete the previous word, works only in gvim
 imap <C-BS> <C-W>
 
@@ -61,11 +66,25 @@ execute pathogen#infect()
 " add custom filetypes
 au BufNewFile,BufRead *.launch set filetype=xml
 
+" Bind Ctrl+<movement> keys to move around the windows,
+" instead of using Ctrl+w + <movement>
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+
+" Using '<' and '>' in visual mode to shift code by a tab-width left/right by
+" default exits visual mode. With this mapping we remain in visual mode after
+" such an operation.
+vnoremap < <gv
+vnoremap > >gv
+
 " toggle NERDTree with Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 
 " toogle TagBar with <F8>
 nmap <F8> :TagbarToggle<CR>
+
+" find the current file in NERDTree
+nmap <leader>f :NERDTreeFind<CR>
 
 " show whitespace in cpph files
 set list listchars=tab:>-,trail:·,extends:>
