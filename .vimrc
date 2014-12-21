@@ -69,7 +69,9 @@ au BufNewFile,BufRead *.launch set filetype=xml
 " Bind Ctrl+<movement> keys to move around the windows,
 " instead of using Ctrl+w + <movement>
 nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
 nnoremap <c-h> <c-w>h
+nnoremap <c-k> <c-w>k
 
 " Using '<' and '>' in visual mode to shift code by a tab-width left/right by
 " default exits visual mode. With this mapping we remain in visual mode after
