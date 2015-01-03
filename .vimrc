@@ -229,8 +229,7 @@ endif
 
 
 " indentLine settings
-" change default indent character for indentLine
-let g:indentLine_char = '┊'
+" change default indent character for indentLine let g:indentLine_char = '┊'
 " disable indentLine plugin on startup
 let g:indentLine_enabled = 0
 
@@ -247,3 +246,8 @@ let g:ycm_key_list_select_completion=['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion=['<s-tab>', '<Up>']
 let g:ycm_auto_trigger = 1
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+
+" Startify SETTINGS
+let g:startify_change_to_vcs_root = 1
+let g:startify_bookmarks = [ '~/.vimrc', '~/.bashrc' ]
