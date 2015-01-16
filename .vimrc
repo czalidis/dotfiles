@@ -193,12 +193,16 @@ let g:miniBufExplVSplit = 1
 let g:miniBufExplMaxSize = 30
 
 " use Ctrl+Page Up/Down to change buffers
-nnoremap <C-PageDown> :MBEbn<CR>
-nnoremap <C-PageUp> :MBEbp<CR>
+nmap <C-PageDown> :MBEbn<CR>
+nmap <C-PageUp> :MBEbp<CR>
 
-" use Ctrl+Up/Down to do the same, solves terminal issues
-nnoremap <C-Down> <C-PageDown>
-nnoremap <C-Up> <C-PageUp>
+" use Ctrl+Up/Down to do the same as above, solves terminal issues
+nmap <C-Down> <C-PageDown>
+nmap <C-Up> <C-PageUp>
+
+" use Ctrl+j/k to do the same as above
+nmap <C-j> <C-Down>
+nmap <C-k> <C-Up>
 
 " same as above but in MRU fashion
 nnoremap <C-TAB>   :MBEbb<CR>
