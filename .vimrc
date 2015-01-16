@@ -193,12 +193,16 @@ let g:miniBufExplVSplit = 1
 let g:miniBufExplMaxSize = 30
 
 " use Ctrl+Page Up/Down to change buffers
-noremap <C-PageDown> :MBEbn<CR>
-noremap <C-PageUp> :MBEbp<CR>
+nnoremap <C-PageDown> :MBEbn<CR>
+nnoremap <C-PageUp> :MBEbp<CR>
+
+" use Ctrl+Up/Down to do the same, solves terminal issues
+nnoremap <C-Down> <C-PageDown>
+nnoremap <C-Up> <C-PageUp>
 
 " same as above but in MRU fashion
-noremap <C-TAB>   :MBEbb<CR>
-noremap <C-S-TAB> :MBEbf<CR>
+nnoremap <C-TAB>   :MBEbb<CR>
+nnoremap <C-S-TAB> :MBEbf<CR>
 
 " should buffer be cycled arround if hits the begining or the endi
 let g:miniBufExplCycleArround = 1
