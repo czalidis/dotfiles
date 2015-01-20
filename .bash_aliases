@@ -6,6 +6,12 @@ alias compiler_clang='export CC=clang && export CXX=clang++'
 
 alias grep-in-files='grep -hHIrFn'
 
+alias tar-gz='tar czf'
+alias tar-bz2='tar cjf'
+
+alias untar-gz='tar xzf'
+alias untar-bz2='tar xjf'
+
 alias regvim='gvim --remote-silent'
 
 alias rosdep-install='rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO'
