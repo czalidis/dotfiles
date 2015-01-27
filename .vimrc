@@ -200,10 +200,6 @@ nmap <C-PageUp> :MBEbp<CR>
 nmap <C-Down> <C-PageDown>
 nmap <C-Up> <C-PageUp>
 
-" use Ctrl+j/k to do the same as above
-nmap <C-j> <C-Down>
-nmap <C-k> <C-Up>
-
 " same as above but in MRU fashion
 nnoremap <C-TAB>   :MBEbb<CR>
 nnoremap <C-S-TAB> :MBEbf<CR>
