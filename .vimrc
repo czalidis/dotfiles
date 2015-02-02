@@ -1,3 +1,43 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'Valloric/YouCompleteMe' "https://github.com/Valloric/YouCompleteMe
+Plugin 'jiangmiao/auto-pairs' "https://github.com/jiangmiao/auto-pairs
+Plugin 'Yggdroot/indentLine' "https://github.com/Yggdroot/indentLine
+Plugin 'scrooloose/nerdcommenter' "https://github.com/scrooloose/nerdcommenter
+Plugin 'scrooloose/nerdtree' "https://github.com/scrooloose/nerdtree
+Plugin 'scrooloose/syntastic' "https://github.com/scrooloose/syntastic
+Plugin 'majutsushi/tagbar' "https://github.com/majutsushi/tagbar
+Plugin 'bling/vim-airline' "https://github.com/bling/vim-airline
+Plugin 'flazz/vim-colorschemes' "https://github.com/flazz/vim-colorschemes
+Plugin 'tpope/vim-fugitive' "https://github.com/tpope/vim-fugitive
+Plugin 'techlivezheng/vim-plugin-minibufexpl' "https://github.com/techlivezheng/vim-plugin-minibufexpl
+Plugin 'taketwo/vim-ros' "https://github.com/taketwo/vim-ros
+Plugin 'mhinz/vim-startify' "https://github.com/mhinz/vim-startify
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 " Enable syntax highlighting
 syntax on
 syntax enable
@@ -110,10 +150,6 @@ set textwidth=80
 
 " show whitespace in cpph files
 set list listchars=tab:>-,trail:·,extends:>
-
-
-" enable pathogen
-execute pathogen#infect()
 
 
 " SEARCH SETTINGS
