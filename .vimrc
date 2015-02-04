@@ -16,6 +16,7 @@ Plugin 'Yggdroot/indentLine' "https://github.com/Yggdroot/indentLine
 Plugin 'scrooloose/nerdcommenter' "https://github.com/scrooloose/nerdcommenter
 Plugin 'scrooloose/nerdtree' "https://github.com/scrooloose/nerdtree
 Plugin 'scrooloose/syntastic' "https://github.com/scrooloose/syntastic
+" Requires 'exuberant-ctags'
 Plugin 'majutsushi/tagbar' "https://github.com/majutsushi/tagbar
 Plugin 'bling/vim-airline' "https://github.com/bling/vim-airline
 Plugin 'flazz/vim-colorschemes' "https://github.com/flazz/vim-colorschemes
@@ -23,6 +24,8 @@ Plugin 'tpope/vim-fugitive' "https://github.com/tpope/vim-fugitive
 Plugin 'techlivezheng/vim-plugin-minibufexpl' "https://github.com/techlivezheng/vim-plugin-minibufexpl
 Plugin 'taketwo/vim-ros' "https://github.com/taketwo/vim-ros
 Plugin 'mhinz/vim-startify' "https://github.com/mhinz/vim-startify
+" Requires 'clang-format-3.4'
+Plugin 'rhysd/vim-clang-format' "https://github.com/rhysd/vim-clang-format
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -285,9 +288,19 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_key_list_select_completion=['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion=['<s-tab>', '<Up>']
 let g:ycm_auto_trigger = 1
+let g:ycm_confirm_extra_conf = 0 "Don't ask for confirmation every time
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 
 " Startify SETTINGS
 let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [ '~/.vimrc', '~/.bashrc' ]
+
+
+" clang-formater SETTINGS
+let g:clang_format#command = "clang-format-3.4"
+let g:clang_format#code_style = "google"
+let g:clang_format#style_options = {
+      \ "ConstructorInitializerIndentWidth" : 2,
+      \ "ColumnLimit" : 100,
+      \ "BreakBeforeBraces" : "Stroustrup"}
