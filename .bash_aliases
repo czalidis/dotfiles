@@ -1,5 +1,6 @@
 alias master_local='export ROS_MASTER_URI=http://localhost:11311'
 alias master_robot='export ROS_MASTER_URI=http://pandora-gears:11311'
+alias master_lab='export ROS_MASTER_URI=http://pandora-lab:11311'
 
 alias compiler_gcc='export CC=gcc && export CXX=g++'
 alias compiler_clang='export CC=clang && export CXX=clang++'
