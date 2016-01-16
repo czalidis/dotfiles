@@ -26,6 +26,9 @@ Plugin 'taketwo/vim-ros' "https://github.com/taketwo/vim-ros
 Plugin 'mhinz/vim-startify' "https://github.com/mhinz/vim-startify
 " Requires 'clang-format-*'
 Plugin 'rhysd/vim-clang-format' "https://github.com/rhysd/vim-clang-format
+Plugin 'Shougo/unite.vim' "https://github.com/Shougo/unite.vim
+Plugin 'Shougo/vimproc.vim' "https://github.com/Shougo/vimproc.vim, dep of unite
+Plugin 'Shougo/neomru.vim' "https://github.com/Shougo/neomru.vim (unite dep)
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -64,6 +67,7 @@ set confirm
 
 " Enable use of the mouse for all modes
 set mouse=a
+set mousemodel=popup_setpos " Right-click on selection should bring up a menu
 
 " Display line numbers on the left
 set number
@@ -309,3 +313,12 @@ let g:clang_format#style_options = {
       \ "ConstructorInitializerIndentWidth" : 2,
       \ "ColumnLimit" : 100,
       \ "BreakBeforeBraces" : "Stroustrup"}
+
+" Unite SETTINGS
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nmap <leader> [unite]
+nnoremap [unite] <nop>
+" Unite mappings
+nnoremap <silent> [unite]/ :<C-u>Unite -direction=dynamicbottom -no-quit -buffer-name=search grep:.<cr>
+nnoremap <silent> [unite]b :<C-u>Unite -direction=dynamicbottom -auto-resize -buffer-name=buffers buffer<cr>
+nnoremap <silent> [unite]<space> :<C-u>Unite -direction=dynamicbottom -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr>
