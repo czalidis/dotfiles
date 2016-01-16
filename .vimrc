@@ -54,6 +54,7 @@ set fileformats=unix,dos,mac " detects unix, dos, mac file formats in that order
 set viminfo='20,\"500 " remember copy registers after quitting in the .viminfo
 " file -- 20 jump links, regs up to 500 lines'
 
+set hidden " allows making buffers hidden even with unsaved changes
 set history=1000 " remember more commands and search history
 set undolevels=1000 " use many levels of undo
 
