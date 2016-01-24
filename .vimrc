@@ -252,6 +252,10 @@ nmap <C-Up> <C-PageUp>
 nnoremap <C-TAB>   :MBEbb<CR>
 nnoremap <C-S-TAB> :MBEbf<CR>
 
+" same as above, but adjusted for terminator
+nnoremap <C-Left>   :MBEbb<CR>
+nnoremap <C-Right>  :MBEbf<CR>
+
 " should buffer be cycled arround if hits the begining or the endi
 let g:miniBufExplCycleArround = 1
 
