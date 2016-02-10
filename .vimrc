@@ -187,6 +187,16 @@ autocmd FileType gitcommit setlocal spell
 " add custom filetypes
 au BufNewFile,BufRead *.launch set filetype=xml " this is probably handled by vim-ros plugin
 
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
+" for mouse to work properly when using tmux
+set ttymouse=xterm2
 
 " CUSTOM MAPPINGS
 " <leader>v brings up .vimrc
