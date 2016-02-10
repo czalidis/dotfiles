@@ -16,6 +16,14 @@ then
   ./install.sh --clang-completer
 fi
 
+# Compile vimproc
+if [ -e $dotfiles/.vim/bundle/vimproc.vim/Makefile ]
+then
+  echo "++ Compiling vimproc!"
+  cd $dotfiles/.vim/bundle/vimproc.vim/
+  make
+fi
+
 # Create symbolic links
 cd ~/
 ln -s $dotfiles/.vim

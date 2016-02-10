@@ -330,6 +330,7 @@ let g:clang_format#style_options = {
 
 " Unite SETTINGS
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 nmap <leader> [unite]
 nnoremap [unite] <nop>
 " Unite mappings
