@@ -29,6 +29,7 @@ Plugin 'rhysd/vim-clang-format' "https://github.com/rhysd/vim-clang-format
 Plugin 'Shougo/unite.vim' "https://github.com/Shougo/unite.vim
 Plugin 'Shougo/vimproc.vim' "https://github.com/Shougo/vimproc.vim, dep of unite
 Plugin 'Shougo/neomru.vim' "https://github.com/Shougo/neomru.vim (unite dep)
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -122,6 +123,8 @@ set t_Co=256
 
 " Change the visual highlight color to match my terminal color
 highlight Visual ctermfg=None ctermbg=DarkGrey
+" Change wrong spelling highlight color to be more readable (218 = pink)
+highlight SpellBad ctermbg=218
 
 
 " EDITOR SETTINGS
@@ -155,7 +158,7 @@ set expandtab
 " enforces a specified line-length and auto inserts hard line breaks when we
 " reach the limit; in Normal mode, you can reformat the current paragraph with
 " gqap.
-set textwidth=80
+set textwidth=100
 "this makes the color after the textwidth column highlighted
 "set colorcolumn=81
 
@@ -178,14 +181,22 @@ endif
 
 
 " SPELLCHECKING SETTINGS
+set spelllang=en,el
 " set spell checking for certain filetypes
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
+autocmd BufRead,BufNewFile *.tex setlocal spell
 
 
 " FILETYPES SETTINGS
 " add custom filetypes
 au BufNewFile,BufRead *.launch set filetype=xml " this is probably handled by vim-ros plugin
+
+
+" greek language input - toggle with ctr-6
+set keymap=greek_utf-8
+set iminsert=0
+set imsearch=-1
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
@@ -337,3 +348,8 @@ nnoremap [unite] <nop>
 nnoremap <silent> [unite]/ :<C-u>Unite -direction=dynamicbottom -no-quit -buffer-name=search grep:.<cr>
 nnoremap <silent> [unite]b :<C-u>Unite -direction=dynamicbottom -auto-resize -buffer-name=buffers buffer<cr>
 nnoremap <silent> [unite]<space> :<C-u>Unite -direction=dynamicbottom -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr>
+
+" Latex-Box settings
+let g:LatexBox_latexmk_async = 0
+let g:LatexBox_build_dir = "build"
+let g:LatexBox_quickfix = 3
