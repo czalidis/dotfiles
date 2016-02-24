@@ -339,6 +339,7 @@ let g:clang_format#style_options = {
       \ "ColumnLimit" : 100,
       \ "BreakBeforeBraces" : "Stroustrup"}
 
+
 " Unite SETTINGS
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
@@ -349,7 +350,13 @@ nnoremap <silent> [unite]/ :<C-u>Unite -direction=dynamicbottom -no-quit -buffer
 nnoremap <silent> [unite]b :<C-u>Unite -direction=dynamicbottom -auto-resize -buffer-name=buffers buffer<cr>
 nnoremap <silent> [unite]<space> :<C-u>Unite -direction=dynamicbottom -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr>
 
-" Latex-Box settings
+
+" Syntastic SETTINGS
+" disable some warnings for tex files
+let g:syntastic_tex_chktex_args = "-n19"
+
+
+" Latex-Box SETTINGS
 let g:LatexBox_latexmk_async = 0
 let g:LatexBox_build_dir = "build"
 let g:LatexBox_quickfix = 3
