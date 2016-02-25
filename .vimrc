@@ -158,7 +158,7 @@ set expandtab
 " enforces a specified line-length and auto inserts hard line breaks when we
 " reach the limit; in Normal mode, you can reformat the current paragraph with
 " gqap.
-set textwidth=100
+set textwidth=80
 "this makes the color after the textwidth column highlighted
 "set colorcolumn=81
 
@@ -182,6 +182,7 @@ endif
 
 " SPELLCHECKING SETTINGS
 set spelllang=en,el
+set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/el.utf-8.add
 " set spell checking for certain filetypes
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
@@ -197,6 +198,8 @@ au BufNewFile,BufRead *.launch set filetype=xml " this is probably handled by vi
 set keymap=greek_utf-8
 set iminsert=0
 set imsearch=-1
+" <F2> also toggles
+inoremap <F2> <C-^>
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
