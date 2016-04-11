@@ -356,10 +356,12 @@ nnoremap <silent> [unite]<space> :<C-u>Unite -direction=dynamicbottom -toggle -a
 
 " Syntastic SETTINGS
 " disable some warnings for tex files
-let g:syntastic_tex_chktex_args = "-n19"
+let g:syntastic_tex_chktex_args = "-n19 -n24"
 
 
 " Latex-Box SETTINGS
 let g:LatexBox_latexmk_async = 0
 let g:LatexBox_build_dir = "build"
 let g:LatexBox_quickfix = 3
+" call latexmk when saving
+au BufWritePost *.tex call LatexBox_Latexmk(0)
