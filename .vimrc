@@ -19,6 +19,7 @@ Plugin 'scrooloose/syntastic' "https://github.com/scrooloose/syntastic
 " Requires 'exuberant-ctags'
 Plugin 'majutsushi/tagbar' "https://github.com/majutsushi/tagbar
 Plugin 'bling/vim-airline' "https://github.com/bling/vim-airline
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes' "https://github.com/flazz/vim-colorschemes
 Plugin 'tpope/vim-fugitive' "https://github.com/tpope/vim-fugitive
 Plugin 'techlivezheng/vim-plugin-minibufexpl' "https://github.com/techlivezheng/vim-plugin-minibufexpl
@@ -29,6 +30,7 @@ Plugin 'rhysd/vim-clang-format' "https://github.com/rhysd/vim-clang-format
 Plugin 'Shougo/unite.vim' "https://github.com/Shougo/unite.vim
 Plugin 'Shougo/vimproc.vim' "https://github.com/Shougo/vimproc.vim, dep of unite
 Plugin 'Shougo/neomru.vim' "https://github.com/Shougo/neomru.vim (unite dep)
+Plugin 'Shougo/neoyank.vim' "enables history/yank for Unite
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " All of your Plugins must be added before the following line
@@ -344,12 +346,24 @@ let g:clang_format#style_options = {
 
 
 " Unite SETTINGS
+" should install silversearcher-ag
+if executable('ag')
+  " Use ag (the silver searcher)
+  " https://github.com/ggreer/the_silver_searcher
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --vimgrep --hidden --ignore ' .
+  \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+end
+
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 nmap <leader> [unite]
 nnoremap [unite] <nop>
 " Unite mappings
 nnoremap <silent> [unite]/ :<C-u>Unite -direction=dynamicbottom -no-quit -buffer-name=search grep:.<cr>
+nnoremap <silent> [unite]y :<C-u>Unite -direction=dynamicbottom -auto-resize -buffer-name=yanks history/yank<cr>
 nnoremap <silent> [unite]b :<C-u>Unite -direction=dynamicbottom -auto-resize -buffer-name=buffers buffer<cr>
 nnoremap <silent> [unite]<space> :<C-u>Unite -direction=dynamicbottom -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr>
 

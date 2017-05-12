@@ -17,3 +17,5 @@ alias regvim='gvim --remote-silent'
 alias vimr='vim --remote-silent'
 
 alias rosdep-install='rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO'
+
+alias xclip='xclip -sel clip'
