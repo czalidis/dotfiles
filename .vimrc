@@ -19,16 +19,27 @@ Plugin 'scrooloose/syntastic' "https://github.com/scrooloose/syntastic
 " Requires 'exuberant-ctags'
 Plugin 'majutsushi/tagbar' "https://github.com/majutsushi/tagbar
 Plugin 'bling/vim-airline' "https://github.com/bling/vim-airline
+Plugin 'vim-airline/vim-airline-themes' "https://github.com/vim-airline/vim-airline-themes
 Plugin 'flazz/vim-colorschemes' "https://github.com/flazz/vim-colorschemes
+Plugin 'joshdick/onedark.vim' "updated One.Dark colorscheme
+Plugin 'sheerun/vim-polyglot' "Better syntax highlighting
 Plugin 'tpope/vim-fugitive' "https://github.com/tpope/vim-fugitive
 Plugin 'techlivezheng/vim-plugin-minibufexpl' "https://github.com/techlivezheng/vim-plugin-minibufexpl
-Plugin 'taketwo/vim-ros' "https://github.com/taketwo/vim-ros
+" Doesn't support Python 3
+"Plugin 'taketwo/vim-ros' "https://github.com/taketwo/vim-ros
 Plugin 'mhinz/vim-startify' "https://github.com/mhinz/vim-startify
 " Requires 'clang-format-*'
 Plugin 'rhysd/vim-clang-format' "https://github.com/rhysd/vim-clang-format
-Plugin 'Shougo/unite.vim' "https://github.com/Shougo/unite.vim
-Plugin 'Shougo/vimproc.vim' "https://github.com/Shougo/vimproc.vim, dep of unite
-Plugin 'Shougo/neomru.vim' "https://github.com/Shougo/neomru.vim (unite dep)
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'nixprime/cpsm' " denite/ctrlp dep
+
+" Denite/Unite stuff, not used atm.
+"Plugin 'Shougo/unite.vim' "https://github.com/Shougo/unite.vim
+"Plugin 'Shougo/denite.nvim' "https://github.com/Shougo/denite.nvim
+"Plugin 'Shougo/vimproc.vim' "https://github.com/Shougo/vimproc.vim, dep of unite
+"Plugin 'Shougo/neomru.vim' "https://github.com/Shougo/neomru.vim (unite dep)
+
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " All of your Plugins must be added before the following line
@@ -118,13 +129,45 @@ set pumheight=6
 "set guioptions-=r " Turn off GUI right scrollbar
 "set guioptions-=L " Turn off GUI left scrollbar
 
+
+" COLOR SETTINGS
+" onedark.vim override: Don't set a background color when running in a terminal;
+" just use the terminal's background color
+" `gui` is the hex color code used in GUI mode/nvim true-color mode
+" `cterm` is the color code used in 256-color mode
+" `cterm16` is the color code used in 16-color mode
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
+
 " set vim to 256 colors to work with terminals
 set t_Co=256
 
-" Change the visual highlight color to match my terminal color
-highlight Visual ctermfg=None ctermbg=DarkGrey
-" Change wrong spelling highlight color to be more readable (218 = pink)
-highlight SpellBad ctermbg=218
+" Enable true color for terminal
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" Choose colorscheme
+"colorscheme default
+colorscheme onedark
+
+if g:colors_name == 'default'
+  " Change the visual highlight color to match my terminal color
+  highlight Visual ctermfg=None ctermbg=DarkGrey
+  " Change wrong spelling highlight color to be more readable (218 = pink)
+  highlight SpellBad ctermbg=218 ctermfg=0
+  " Reverse the color for Search to make it more redable
+  highlight Search ctermbg=0 ctermfg=Yellow cterm=reverse
+  " Make warnigs more readable
+  highlight SyntasticWarning ctermbg=LightBlue ctermfg=0
+endif
 
 
 " EDITOR SETTINGS
@@ -158,7 +201,7 @@ set expandtab
 " enforces a specified line-length and auto inserts hard line breaks when we
 " reach the limit; in Normal mode, you can reformat the current paragraph with
 " gqap.
-set textwidth=80
+set textwidth=100
 "this makes the color after the textwidth column highlighted
 "set colorcolumn=81
 
@@ -195,11 +238,11 @@ au BufNewFile,BufRead *.launch set filetype=xml " this is probably handled by vi
 
 
 " greek language input - toggle with ctr-6
-set keymap=greek_utf-8
+" set keymap=greek_utf-8 " Disable until Greek keyboard is needed. :)
 set iminsert=0
 set imsearch=-1
 " <F2> also toggles
-inoremap <F2> <C-^>
+"inoremap <F2> <C-^>
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
@@ -210,7 +253,8 @@ if &term =~ '^screen'
 endif
 
 " for mouse to work properly when using tmux
-set ttymouse=xterm2
+"set ttymouse=xterm2
+set ttymouse=sgr
 
 " CUSTOM MAPPINGS
 " <leader>v brings up .vimrc
@@ -300,13 +344,8 @@ set ttimeoutlen=50
 let g:airline_theme = 'kolor'
 
 " enable powerline symbols, needs powerline fonts installed
-let g:airline_powerline_fonts = 1
-
-" change default font for gvim to enable powerline symbols
-if has('gui_running')
-  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-endif
-
+" disable powerline fonts for now
+let g:airline_powerline_fonts = 0
 
 " indentLine settings
 " change default indent character for indentLine let g:indentLine_char = '┊'
@@ -325,8 +364,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_key_list_select_completion=['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion=['<s-tab>', '<Up>']
 let g:ycm_auto_trigger = 1
+let g:ycm_auto_hover = '' "Don't show popup when cursor is over a type/variable
 let g:ycm_confirm_extra_conf = 0 "Don't ask for confirmation every time
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_clangd_args=['--enable-config']
 
 
 " Startify SETTINGS
@@ -335,23 +376,56 @@ let g:startify_bookmarks = [ '~/.vimrc', '~/.bashrc' ]
 
 
 " clang-formater SETTINGS
-let g:clang_format#command = "clang-format-3.6"
-let g:clang_format#code_style = "google"
-let g:clang_format#style_options = {
-      \ "ConstructorInitializerIndentWidth" : 2,
-      \ "ColumnLimit" : 100,
-      \ "BreakBeforeBraces" : "Stroustrup"}
+let g:clang_format#command = "clang-format-athena-1"
+"let g:clang_format#code_style = "google"
+"let g:clang_format#style_options = {
+"      \ "ColumnLimit" : 100,
+"      \ "BinPackParameters" : "false",
+"      \ "DerivePointerAlignment": "false",
+"      \ "PointerAlignment": "Left"}
+
+
+" CtrlP SETTINGS
+" Use the cpsm algorithm
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+"let g:ctrlp_user_command = 'find %s -type f'
+if executable('ag')
+  let g:ctrlp_user_command =
+    \ 'ag %s --files-with-matches -g "" --nocolor --nogroup --ignore "\.git$\|\.hg$\|\.svn$" --path-to-ignore .ctrlp_ignore'
+endif
+
+" mappings
+let g:ctrlp_map = '<leader><space>'
+nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 
 
 " Unite SETTINGS
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-nmap <leader> [unite]
-nnoremap [unite] <nop>
-" Unite mappings
-nnoremap <silent> [unite]/ :<C-u>Unite -direction=dynamicbottom -no-quit -buffer-name=search grep:.<cr>
-nnoremap <silent> [unite]b :<C-u>Unite -direction=dynamicbottom -auto-resize -buffer-name=buffers buffer<cr>
-nnoremap <silent> [unite]<space> :<C-u>Unite -direction=dynamicbottom -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr>
+" should install silversearcher-ag
+"if executable('ag')
+"  " Use ag (the silver searcher)
+"  " https://github.com/ggreer/the_silver_searcher
+"  call denite#custom#var('grep', 'command', ['ag'])
+"  call denite#custom#var('grep', 'recursive_opts', [])
+"  call denite#custom#var('grep', 'pattern_opt', [])
+"  call denite#custom#var('grep', 'separator', ['--'])
+"  call denite#custom#var('grep', 'final_opts', [])
+"  call denite#custom#var('grep', 'default_opts',
+"          \ [ '--skip-vcs-ignores', '--vimgrep', '--smart-case', '--hidden' ])
+"end
+
+"" Default is 'matcher/fuzzy'
+"call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm', 'matcher/fuzzy'])
+"" Default is 'sorter/rank'
+"call denite#custom#source('buffer,file/rec', 'sorters', ['sorter/rank'])
+"" Default is None
+"call denite#custom#source('buffer,file/rec', 'converters', ['converter_relative_word'])
+
+"nmap <leader> [denite]
+"nnoremap [denite] <nop>
+"" Unite mappings
+"nnoremap <silent> [denite]/ :<C-u>Denite -mode=normal -direction=dynamicbottom -no-quit -buffer-name=search grep:.<cr>
+"nnoremap <silent> [denite]b :<C-u>Denite -mode=normal -direction=dynamicbottom -auto-resize -buffer-name=buffers buffer<cr>
+"nnoremap <silent> [denite]<space> :<C-u>Denite -direction=dynamicbottom -auto-resize -buffer-name=mixed file_rec buffer file_mru<cr>
 
 
 " Syntastic SETTINGS
