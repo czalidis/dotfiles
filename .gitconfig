@@ -1,6 +1,6 @@
 [user]
   name = Christos Zalidis
-  email = zalidis@gmail.com
+  email = christos.zalidis@us.bosch.com
 
 [color]
   ui = true
@@ -9,7 +9,27 @@
   decorate = full
 
 [push]
-  default = tracking
+  default = upstream
 
 [alias]
   tree = log --oneline --graph
+
+[http "https://athena.daimler.com"]
+  sslCert = /home/zac2pal/certs_dap/cert-dap.crt
+  sslKey = /home/zac2pal/certs_dap/cert-dap.key
+  sslCaInfo = /etc/ssl/certs/ca-certificates.crt
+
+[credential "https://athena.daimler.com"]
+  username = czalidi
+  helper = cache --timeout=86400
+
+[credential "https://github.boschdevcloud.com"]
+  username = zac2pal
+  helper = store
+
+[credential "https://sourcecode01.de.bosch.com"]
+  username = zac2pal
+  helper = cache --timeout=86400
+
+[core]
+  autocrlf = false

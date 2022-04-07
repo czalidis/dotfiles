@@ -17,3 +17,6 @@ alias regvim='gvim --remote-silent'
 alias vimr='vim --remote-silent'
 
 alias rosdep-install='rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO'
+
+alias cds='cd $HOME/workspace/athena/src'
+alias cdc='cd $HOME/workspace/athena_clean/src'
